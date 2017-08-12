@@ -1,0 +1,51 @@
+.result{
+    text-align: center;
+    font-size: 80px;
+    margin-top: 2em;
+}
+
+.settings-button{
+    margin-left: 20px;
+    border: solid gray 1px;
+    width: 40px;
+    height: 40px;
+    padding: 5px;
+    border-radius: 8px;
+    text-align: center;
+    float: left;
+}
+.settings-button:hover{
+    color: #3366BB;
+    cursor: pointer;
+}
+
+.refresh-button{
+    margin-right: 20px;
+    border: solid gray 1px;
+    width: 40px;
+    height: 40px;
+    padding: 5px;
+    border-radius: 8px;
+    text-align: center;
+    float: right;
+}
+.buttons{
+    display: list-item;
+}
+
+.no-select{
+    -moz-user-select: -moz-none;
+    -khtml-user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+
+.no-select span{
+    -moz-user-select: text;
+    -khtml-user-select: text;
+    -webkit-user-select: text;
+    -ms-user-select: text;
+    user-select: text;
+}

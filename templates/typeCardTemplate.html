@@ -1,0 +1,35 @@
+<div class="panel panel-default norad">
+    <style>
+        .icon-margin{
+            margin-top: -10px
+        }
+        .left-icon-margin{
+            margin-top: -7px
+        }
+        .l-inline{
+            display: inline-block;
+        }
+        .main:hover{
+            color: #3366BB;
+            cursor: pointer;
+        }
+        .ic-num:before{
+            content: "0-9";
+            font-family: "courier new";
+            font-weight: 900;
+        }
+    </style>
+    <div class="panel-body main" ng-click="openDashBoard()">
+        {{name}}
+    </div>
+    <div class="panel-footer">
+        <div class="pull-left left-icon-margin" ng-if="icon">
+            <i ng-class="icon" aria-hidden="true"></i>
+        </div>
+        <div class="pull-right icon-margin">
+            <i class="fa fa-random" aria-hidden="true"></i>
+            <i class="fa fa-history" aria-hidden="true"></i>
+            <div class="l-inline">{{visitCount}}</div>
+        </div>
+    </div>
+</div>

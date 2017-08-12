@@ -1,0 +1,35 @@
+<html>
+<head>
+	<title>Random Dashboard</title>
+	<link rel="stylesheet" type="text/css" href="node_modules/bootstrap/dist/css/bootstrap.css">
+	<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+	<link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body ng-app="app" ng-controller='controller'>
+
+	<ng-include src="'templates/navbarTemplate.html'"></ng-include>
+
+	<img class="banner-image" src="images/mountainbackground.png"/>
+	<!--<div class="gradient"></div>-->
+	<div class="content">
+		<div class="container-fluid">
+			<div class="row" ng-repeat="i in getRowCount()">
+				<div class="col-sm-3" ng-repeat="j in [0,1,2,3]">
+
+					<type-card data="getDashboard((i*4)+j)" ng-if="getDashboard((i*4)+j)"></type-card>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+
+</body>
+<script src="node_modules/moment/min/moment.min.js" type="text/javascript"></script>
+<script src="node_modules/angular/angular.min.js" type="text/javascript"></script>
+<script src="node_modules/angular-ui-bootstrap/dist/ui-bootstrap-tpls.js" type="text/javascript"></script>
+<script src="node_modules/jquery/dist/jquery.min.js" type="text/javascript"></script>
+<script src="node_modules/bootstrap/dist/js/bootstrap.min.js" type="text/javascript"></script>
+<script src="app.js" type="text/javascript"></script>
+</html>

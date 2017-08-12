@@ -1,0 +1,20 @@
+.result{
+    text-align: center;
+    font-size: 50px;
+    margin-top: 2em;
+    overflow-x: auto;
+}
+
+.settings-button{
+    margin-left: 20px;
+    border: solid gray 1px;
+    width: 40px;
+    height: 40px;
+    padding: 5px;
+    border-radius: 8px;
+    text-align: center;
+}
+.settings-button:hover{
+    color: #3366BB;
+    cursor: pointer;
+}

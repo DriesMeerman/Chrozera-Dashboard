@@ -1,0 +1,20 @@
+{
+  "name": "Chrozera Dashboard",
+  "version": "1.0.0",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Dries Meerman",
+  "license": "MIT",
+  "dependencies": {
+    "angular": "^1.5.7",
+    "angular-ui-bootstrap": "^2.0.0",
+    "bootstrap": "^3.3.7",
+    "font-awesome": "^4.7.0",
+    "jquery": "^3.1.0",
+    "moment": "^2.15.1"
+  },
+  "devDependencies": {},
+  "description": ""
+}
