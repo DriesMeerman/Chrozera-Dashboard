@@ -1,4 +1,4 @@
-angular.module('app', []);
+angular.module('app', ['ui.bootstrap']);
 angular.module('app')
     .directive('typeCard', [function(){
         return {
@@ -194,6 +194,10 @@ angular.module('app')
         $scope.number = randomBetween($scope.min, $scope.max);
     };
 
+    $scope.openSettings = function(){
+        window.location = "../settings##number"
+    };
+
 	function randomBetween(min, max){
 	    max++;
 	    var size = Math.abs(min) + max;
@@ -206,15 +210,24 @@ angular.module('app')
 
 .controller('passwordCtrl',['$scope', 'settingService', function($scope, settingService){
 
-	(function init() {
+	function init() {
         settingService.pageVisit.add("2");
-	    var options = settingService.password.getOptions();
-        $scope.password = generatePassword(options.length, options.lowercase, options.uppercase, options.number, options.special);
-    })();
+	    $scope.options = settingService.password.getOptions();
+        setPassword();
+    }init();
+
+    $scope.refresh = function(){
+        setPassword();
+    };
 
     $scope.openSettings = function(){
-        window.location = "../settings##number"
+        window.location = "../settings##passsword"
     };
+
+    function setPassword(){
+        $scope.password = generatePassword($scope.options.length, $scope.options.lowercase, $scope.options.uppercase, $scope.options.number, $scope.options.special);
+    }
+
 
 	function generatePassword(length, lowerCase, upperCase, numbers, special){
 
@@ -274,8 +287,105 @@ angular.module('app')
     }
 }])
 
-.controller('datesCtrl', ['$scope', 'settingService', function($scope, settingService){
+.controller('datesCtrl', ['$scope', 'settingService', 'uibDateParser', function($scope, settingService, uibDateParser){
     settingService.pageVisit.add("1");
+
+    $scope.magnitude = 3;
+    $scope.forward   = 1;
+    $scope.amount    = 1;
+    $scope.state     = 1;
+
+    $scope.startDate       = new Date();
+    $scope.endDate         = new Date();
+    $scope.startDatePicker = { opened: false };
+    $scope.endDatePicker   = { opened: false };
+
+
+    $scope.magnitudeOptions = [
+        {text: 'Days', value: 1},
+        {text: 'Weeks', value: 2},
+        {text: 'Months', value: 3}
+    ];
+
+    $scope.directionOptions = [
+        {text: 'Add', value: 1},
+        {text: 'Subtract', value: -1},
+    ];
+
+    $scope.dateFormat = 'D MMMM YYYY';
+
+    $scope.dateOptions = {
+        formatYear: 'yy',
+        startingDay: 1
+    };
+
+    $scope.toggleState = function(){
+        $scope.state = !$scope.state;
+    };
+
+    $scope.openSettings = function(){
+        window.location = "../settings##dates"
+    };
+
+   $scope.toggleStartDatePicker = function(){
+       $scope.startDatePicker.opened = !$scope.startDatePicker.opened;
+   };
+
+   $scope.togggleEndDatePicker = function(){
+       $scope.endDatePicker.opened = !$scope.endDatePicker.opened;
+   }
+
+   $scope.getDuration = function(magnitude){
+       var start = moment($scope.startDate);
+       var end   = moment($scope.endDate);
+
+       return end.diff(start, magnitude);
+   };
+
+    $scope.afterDate = function(){
+
+        var start = moment($scope.startDate);
+        var magnitude = 'months';
+
+        switch($scope.magnitude){
+            case 1:
+                magnitude = "days";
+                break;
+            case 2:
+                magnitude = "weeks";
+                break;
+            case 3:
+                magnitude = "months";
+                break;
+            default:
+                magnitude = "months";
+        }
+
+        return start.add($scope.amount, magnitude);
+
+    }
+
+}])
+
+.controller('coinflipCtrl', ['$scope', 'settingService', function($scope, settingService){
+
+    function init(){
+        setCoin();
+        settingService.pageVisit.add("4");
+    } init();
+
+    $scope.refresh = function(){
+        setCoin();
+    };
+
+    $scope.openSettings = function(){
+        window.location = "../settings##coin"
+    }
+
+    function setCoin(){
+        $scope.coin = (Math.random() < 0.5) ? 1 : 0;
+    }
+
 }]);
 
 

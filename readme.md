@@ -5,10 +5,8 @@ This repository contains the dashboard and the pages linked that are available f
 * random number generator
 * password generator
 * settings stored in HTML5 localstorage
-
-### Work in progress
-* date calculations 
-* coinflip
+* date calculation helper
+* coin flip
 
 ## Dependencies
 

@@ -1,10 +1,12 @@
 <html>
 <head>
-	<title>Random Dashboard</title>
+	<title>Dashboard</title>
 	<link rel="stylesheet" type="text/css" href="node_modules/bootstrap/dist/css/bootstrap.css">
 	<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 
 	<link rel="stylesheet" type="text/css" href="style.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
 </head>
 <body ng-app="app" ng-controller='controller'>
 
@@ -15,7 +17,7 @@
 	<div class="content">
 		<div class="container-fluid">
 			<div class="row" ng-repeat="i in getRowCount()">
-				<div class="col-sm-3" ng-repeat="j in [0,1,2,3]">
+				<div class="col-md-3" ng-repeat="j in [0,1,2,3]">
 
 					<type-card data="getDashboard((i*4)+j)" ng-if="getDashboard((i*4)+j)"></type-card>
 				</div>

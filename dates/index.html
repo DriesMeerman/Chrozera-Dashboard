@@ -1,18 +1,201 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Random Dashboard</title>
+    <title>Date calculation</title>
     <link rel="stylesheet" type="text/css" href="../node_modules/bootstrap/dist/css/bootstrap.css">
-    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css"
+          href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <link rel="stylesheet" type="text/css" href="../password/style.css">
+    <link rel="stylesheet" type="text/css" href="style.css">
 </head>
 <body ng-app="app" ng-controller='datesCtrl'>
 
 <ng-include src="'../templates/navbarTemplate.html'"></ng-include>
 
-<div>
-    <h1 class="result">TODO</h1>
+<div class="buttons">
+    <div class="settings-button" ng-click="openSettings()">
+        <i class="fa fa-cog fa-2x" aria-hidden="true"></i>
+    </div>
+    <div class="refresh-button no-select" ng-click="toggleState()">
+        <i class="fa fa-2x" ng-class="{'fa-hourglass-half': state, 'fa-calendar': !state}" aria-hidden="true"></i>
+    </div>
+</div>
+
+<div class="content" ng-show="state">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-4 col-md-offset-1">
+                <p>
+                    Start Date
+                </p>
+            </div>
+            <div class="col-md-6">
+
+                <p class="input-group">
+                    <input type="text" class="form-control" uib-datepicker-popup="{{format}}" ng-model="startDate"
+                           is-open="startDatePicker.opened" datepicker-options="dateOptions" ng-required="true"
+                           close-text="Close" alt-input-formats="altInputFormats"/>
+                    <span class="input-group-btn">
+                    <button type="button" class="btn btn-default" ng-click="toggleStartDatePicker()"><i
+                    class="glyphicon glyphicon-calendar"></i></button>
+                    </span>
+                </p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4 col-md-offset-1 l-top-20">
+                Add or subtract
+            </div>
+            <div class="col-md-2 l-top-20">
+                <select class="form-control" ng-model="forward" ng-options="x.value as x.text for x in directionOptions">
+                </select>
+            </div>
+            <div class="col-md-2 l-top-20">
+                <input class="form-control" type="number" min="1" placeholder="amount" ng-model="amount"/>
+            </div>
+            <div class="col-md-2 l-top-20">
+                <select class="form-control" ng-model="magnitude" ng-options="x.value as x.text for x in magnitudeOptions">
+                </select>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4 col-md-offset-1  l-top-20">
+                Date Format
+            </div>
+            <div class="col-md-6 l-top-20">
+                <input class="form-control" type="text" min="1" placeholder="amount" ng-model="dateFormat"/>
+            </div>
+        </div>
+        <div class="result">
+            {{afterDate().format(dateFormat)}}
+        </div>
+        <hr>
+        <div class="row">
+            <div class="col-md-6 col-md-offset-3">
+                <table class="table table-bordered">
+                    <thead>
+                    <tr>
+                        <th>Input</th>
+                        <th>Example</th>
+                        <th>Description</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td><code>YYYY</code></td>
+                        <td><code>2014</code></td>
+                        <td>4 or 2 digit year</td>
+                    </tr>
+                    <tr>
+                        <td><code>YY</code></td>
+                        <td><code>14</code></td>
+                        <td>2 digit year</td>
+                    </tr>
+                    <tr>
+                        <td><code>Y</code></td>
+                        <td><code>-25</code></td>
+                        <td>Year with any number of digits and sign</td>
+                    </tr>
+                    <tr>
+                        <td><code>Q</code></td>
+                        <td><code>1..4</code></td>
+                        <td>Quarter of year. Sets month to first month in quarter.</td>
+                    </tr>
+                    <tr>
+                        <td><code>M MM</code></td>
+                        <td><code>1..12</code></td>
+                        <td>Month number</td>
+                    </tr>
+                    <tr>
+                        <td><code>MMM MMMM</code></td>
+                        <td><code>Jan..December</code></td>
+                        <td>Month name in locale set by <code>moment.locale()</code></td>
+                    </tr>
+                    <tr>
+                        <td><code>D DD</code></td>
+                        <td><code>1..31</code></td>
+                        <td>Day of month</td>
+                    </tr>
+                    <tr>
+                        <td><code>Do</code></td>
+                        <td><code>1st..31st</code></td>
+                        <td>Day of month with ordinal</td>
+                    </tr>
+                    <tr>
+                        <td><code>DDD DDDD</code></td>
+                        <td><code>1..365</code></td>
+                        <td>Day of year</td>
+                    </tr>
+                    <tr>
+                        <td><code>X</code></td>
+                        <td><code>1410715640.579</code></td>
+                        <td>Unix timestamp</td>
+                    </tr>
+                    <tr>
+                        <td><code>x</code></td>
+                        <td><code>1410715640579</code></td>
+                        <td>Unix ms timestamp</td>
+                    </tr>
+                    </tbody>
+                </table>
+                <p>
+                    For more information about the possible date formats see the <a>momentJS documentation</a>.
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="content" ng-show="!state">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-4 col-md-offset-1">
+                <p>
+                    Start Date
+                </p>
+            </div>
+            <div class="col-md-6">
+
+                <p class="input-group">
+                    <input type="text" class="form-control" uib-datepicker-popup="{{format}}" ng-model="startDate"
+                           is-open="startDatePicker.opened" datepicker-options="dateOptions" ng-required="true"
+                           close-text="Close" alt-input-formats="altInputFormats"/>
+                    <span class="input-group-btn">
+                    <button type="button" class="btn btn-default" ng-click="toggleStartDatePicker()"><i
+                            class="glyphicon glyphicon-calendar"></i></button>
+                    </span>
+                </p>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-4 col-md-offset-1">
+                <p>
+                    End Date
+                </p>
+            </div>
+            <div class="col-md-6">
+
+                <p class="input-group">
+                    <input type="text" class="form-control" uib-datepicker-popup="{{format}}" ng-model="endDate"
+                           is-open="endDatePicker.opened" datepicker-options="dateOptions" ng-required="true"
+                           close-text="Close" alt-input-formats="altInputFormats"/>
+                    <span class="input-group-btn">
+                    <button type="button" class="btn btn-default" ng-click="togggleEndDatePicker()"><i
+                            class="glyphicon glyphicon-calendar"></i></button>
+                    </span>
+                </p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4 col-md-offset-1">
+                Days
+            </div>
+            <div>
+                {{getDuration('days')}}
+            </div>
+        </div>
+    </div>
 </div>
 
 </body>

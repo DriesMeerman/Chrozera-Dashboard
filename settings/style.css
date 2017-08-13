@@ -16,3 +16,11 @@
 .l-block{
     display: block
 }
+
+
+
+@media only screen and (min-width: 500px) {
+    .icon-margin{
+        margin-left: 5px;
+    }
+}

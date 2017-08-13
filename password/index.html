@@ -1,9 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Random Dashboard</title>
+    <title>Password generator</title>
     <link rel="stylesheet" type="text/css" href="../node_modules/bootstrap/dist/css/bootstrap.css">
     <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <link rel="stylesheet" type="text/css" href="style.css">
 </head>
@@ -12,8 +13,13 @@
 <ng-include src="'../templates/navbarTemplate.html'"></ng-include>
 
 <div>
-    <div class="settings-button" ng-click="openSettings()">
-        <i class="fa fa-cog fa-2x" aria-hidden="true"></i>
+    <div class="buttons">
+        <div class="settings-button" ng-click="openSettings()">
+            <i class="fa fa-cog fa-2x" aria-hidden="true"></i>
+        </div>
+        <div class="refresh-button no-select" ng-click="refresh()">
+            <i class="fa fa-refresh fa-2x" aria-hidden="true"></i>
+        </div>
     </div>
     <div class="result">
         {{password}}
@@ -23,11 +29,17 @@
         <div class="row">
             <div class="col-md-6 col-md-offset-3">
                 <p>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur fringilla orci sit amet nulla porttitor, in sollicitudin justo facilisis. Vivamus dignissim bibendum mi quis fermentum. Sed bibendum id diam eget lacinia. Sed ut arcu et magna faucibus varius efficitur ac sem. Phasellus magna nulla, tristique a quam et, maximus placerat velit. Proin fringilla metus ac fermentum scelerisque. Curabitur tempus, eros a pretium elementum, ante lacus molestie ligula, vulputate tincidunt augue urna interdum tellus. Donec id nibh laoreet, mattis augue id, tincidunt risus. Ut placerat a neque id elementum. Donec lacinia at libero a condimentum. In hac habitasse platea dictumst. Quisque in nunc sem. Sed vel pretium sapien, nec efficitur ipsum. Mauris tristique dui non tincidunt euismod. Ut mollis laoreet est, vel sollicitudin mi varius eu. Ut volutpat pulvinar sapien non accumsan.
-
-                    Donec tempus felis lectus, id ullamcorper ante rutrum a. Aenean ac vehicula nibh. Mauris luctus lorem vitae neque congue luctus. Vivamus sed justo tincidunt, laoreet lacus in, accumsan lectus. Etiam tincidunt venenatis enim. Cras accumsan ut massa sed ullamcorper. Sed sed blandit sapien. Nunc euismod aliquet augue a bibendum. Aliquam erat volutpat. Pellentesque id lacinia purus, quis hendrerit ante. Ut purus libero, imperdiet eu maximus ac, convallis in lorem.
-
-
+                    The password has a length of {{options.length}} <br>
+                    The following character groups where used in the generation of the password.
+                </p>
+                <ul>
+                    <li ng-if="options.uppercase">Uppercase letters</li>
+                    <li ng-if="options.lowercase">Lowercase letters</li>
+                    <li ng-if="options.number">Numbers</li>
+                    <li ng-if="options.special">Special characters</li>
+                </ul>
+                <p>
+                    Open the settings page to change the character groups and length of the password.
                 </p>
             </div>
         </div>
