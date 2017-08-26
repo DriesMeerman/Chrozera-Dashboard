@@ -2,11 +2,9 @@
 <html lang="en">
 <head>
     <title>Password generator</title>
-    <link rel="stylesheet" type="text/css" href="../node_modules/bootstrap/dist/css/bootstrap.css">
-    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <% include ../../partial/headTemplate.ejs %>
 
-    <link rel="stylesheet" type="text/css" href="style.css">
+    <link rel="stylesheet" type="text/css" href="/style/password/style.css">
 </head>
 <body ng-app="app" ng-controller='passwordCtrl'>
 
@@ -47,11 +45,4 @@
 </div>
 
 </body>
-
-<script src="../node_modules/moment/min/moment.min.js" type="text/javascript"></script>
-<script src="../node_modules/angular/angular.min.js" type="text/javascript"></script>
-<script src="../node_modules/angular-ui-bootstrap/dist/ui-bootstrap-tpls.js" type="text/javascript"></script>
-<script src="../node_modules/jquery/dist/jquery.min.js" type="text/javascript"></script>
-<script src="../node_modules/bootstrap/dist/js/bootstrap.min.js" type="text/javascript"></script>
-<script src="../app.js" type="text/javascript"></script>
 </html>

@@ -1,6 +1,18 @@
 # Chrozera Dashboard
 This repository contains the dashboard and the pages linked that are available from the dashboard. 
 
+## Usage
+To start the node application in dev mode you can use `./run.sh` .
+To start the application normally run `node src/main/server.js`
+
+### Arguments
+-p [PORT]  
+it is possible to specify a port number the application should run on with an argument. The default port that will be used is 4040.
+
+
+-h  
+Outputs help information.
+
 ## Features
 * random number generator
 * password generator
@@ -13,11 +25,16 @@ This repository contains the dashboard and the pages linked that are available f
 The JS dependencies can be installed using the NPM package manager.  
 
 Summary:
+* Express
+* ejs
 * AngularJS 1.5.7
 * Font-awesome icons
 * Angular UI Bootstrap
 * Jquery
 * momentJS
+
+Dev:
+* nodemon
 
 ## License MIT
 Copyright 2017 Dries Meerman
