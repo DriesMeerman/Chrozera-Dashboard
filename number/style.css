@@ -49,3 +49,9 @@
     -ms-user-select: text;
     user-select: text;
 }
+
+.navbar {
+    -webkit-border-radius: 0;
+    -moz-border-radius: 0;
+    border-radius: 0;
+}
