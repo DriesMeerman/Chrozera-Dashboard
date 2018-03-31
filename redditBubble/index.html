@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Reddit Bubble</title>
+    <link rel="stylesheet" type="text/css" href="../node_modules/bootstrap/dist/css/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body ng-app="app" ng-controller="controller">
+<!--Use template maybe-->
+
+    <ng-include src="'../templates/navbarTemplate.html'"></ng-include>
+
+    <div align="center" class="btn-holder">
+        <button class="btn btn-default" ng-click="generateChartByField('subreddit', true)">Subreddit</button>
+        <button class="btn btn-default" ng-click="generateChartByField('user', true)">User</button>
+        <button class="btn btn-default" ng-click="generateChartByField('title', true)">Title</button>
+        <button class="btn btn-default" ng-click="generateChartByField('link_content', true)">Link</button>
+    </div>
+
+    <div >
+        <div style="margin-left:calc(50% - 300px);margin-right:auto;">
+            <div id="chartContainer"></div>
+        </div>
+        <!--<div id="chartContainer" style="margin-left: calc(50% - 100px);margin-right:auto;width:600px;height:600px;"></div>-->
+    </div>
+</body>
+<script src="../node_modules/moment/min/moment.min.js" type="text/javascript"></script>
+<script src="../node_modules/angular/angular.min.js" type="text/javascript"></script>
+<script src="../node_modules/angular-ui-bootstrap/dist/ui-bootstrap-tpls.js" type="text/javascript"></script>
+<script src="../node_modules/jquery/dist/jquery.min.js" type="text/javascript"></script>
+<script src="../node_modules/bootstrap/dist/js/bootstrap.min.js" type="text/javascript"></script>
+<script src="../node_modules/d3/dist/d3.min.js" type="text/javascript"></script>
+<script src="script.js"></script>
+</html>

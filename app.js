@@ -102,7 +102,9 @@ angular.module('app')
 			dashboard("1", 'Date Calculations', 'dates', 'fa fa-calendar'),
 			dashboard("2", 'Password Generator', 'password', 'fa fa-asterisk'),
 			dashboard("3", 'Settings', 'settings', 'fa fa-cog'),
-			dashboard("4", 'Coin Flip', 'coinflip', 'fa fa-question-circle-o')
+			dashboard("4", 'Coin Flip', 'coinflip', 'fa fa-question-circle-o'),
+            dashboard("5", 'Reddit Log', 'http://chrozera.xyz:4040/dashboard', 'fa fa-bar-chart'),
+            dashboard("6", 'Reddit Bubble', 'redditBubble', 'fa fa-bar-chart')
 		];
 
 		function dashboard(id, name, path, icon){
