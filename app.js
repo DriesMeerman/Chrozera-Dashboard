@@ -361,7 +361,7 @@ angular.module('app')
                 magnitude = "months";
         }
 
-        return start.add($scope.amount, magnitude);
+        return start.add($scope.amount * $scope.forward, magnitude);
 
     }
 
