@@ -1,0 +1,31 @@
+<html>
+
+<head>
+	<title>Dashboard</title>
+
+    <% include ../../partial/headTemplate.ejs %>
+	<link rel="stylesheet" type="text/css" href="style/dashboard.css">
+
+</head>
+<script>
+    var boards = <%- JSON.stringify( dashboards) %>;
+</script>
+<body ng-app="app" ng-controller='controller'>
+
+	<ng-include src="'templates/navbarTemplate.html'"></ng-include>
+
+	<img class="banner-image" src="images/mountainbackground.png"/>
+	<!--<div class="gradient"></div>-->
+	<div class="content">
+		<div class="container-fluid">
+			<div class="row" ng-repeat="i in getRowCount()">
+				<div class="col-md-3" ng-repeat="j in [0,1,2,3]">
+
+					<type-card data="getDashboard((i*4)+j)" ng-if="getDashboard((i*4)+j)"></type-card>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+
+</html>

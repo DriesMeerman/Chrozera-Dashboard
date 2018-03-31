@@ -98,12 +98,16 @@ angular.module('app')
 	.controller('controller', ['$scope', 'settingService', function($scope, settingService){
 
 		$scope.dashboards = [
-			dashboard("0", 'Random Number', 'number', 'ic-num'),
-			dashboard("1", 'Date Calculations', 'dates', 'fa fa-calendar'),
-			dashboard("2", 'Password Generator', 'password', 'fa fa-asterisk'),
-			dashboard("3", 'Settings', 'settings', 'fa fa-cog'),
-			dashboard("4", 'Coin Flip', 'coinflip', 'fa fa-question-circle-o')
-		];
+            dashboard("0", 'Random Number', 'number', 'ic-num'),
+            dashboard("1", 'Date Calculations', 'dates', 'fa fa-calendar'),
+            dashboard("2", 'Password Generator', 'password', 'fa fa-asterisk'),
+            dashboard("3", 'Settings', 'settings', 'fa fa-cog'),
+            dashboard("4", 'Coin Flip', 'coinflip', 'fa fa-question-circle-o')
+        ];
+
+		if (boards){
+		    $scope.dashboards = boards;
+        }
 
 		function dashboard(id, name, path, icon){
             return {
@@ -333,7 +337,7 @@ angular.module('app')
 
    $scope.togggleEndDatePicker = function(){
        $scope.endDatePicker.opened = !$scope.endDatePicker.opened;
-   }
+   };
 
    $scope.getDuration = function(magnitude){
        var start = moment($scope.startDate);
@@ -386,6 +390,79 @@ angular.module('app')
         $scope.coin = (Math.random() < 0.5) ? 1 : 0;
     }
 
+}])
+
+.controller('loginCtrl', ['$scope', function($scope){
+    $scope.submitLogin = function(){
+        console.log($scope.user, $scope.password);
+    };
+
+    function init(){
+        var GoogleAuth = gapi.auth2.getAuthInstance();
+        GoogleAuth.isSignedIn.listen(function(a, b, c){
+            console.log(a, b, c)
+        });
+
+    };
+
+    function handleClientLoad() {
+        // Load the API's client and auth2 modules.
+        // Call the initClient function after the modules load.
+        //gapi.load('client:auth2', initClient);
+        initClient();
+        init();
+        console.log('wahat')
+    }
+
+    /**
+     * The Sign-In client object.
+     */
+    var auth2;
+
+    /**
+     * Initializes the Sign-In client.
+     */
+    var initClient = function() {
+        console.log('weep weep weep');
+
+        gapi.load('auth2', function(){
+            console.log('loading gapi');
+            /**
+             * Retrieve the singleton for the GoogleAuth library and set up the
+             * client.
+             */
+            auth2 = gapi.auth2.init({
+                client_id: '897548273752-a3jtnk9hlpv5ucd92nke6qbj968kh5g3.apps.googleusercontent.com'
+            });
+
+            // Attach the click handler to the sign-in button
+            auth2.attachClickHandler('signin-button', {}, onSuccess, onFailure);
+        });
+
+
+    };
+
+    $scope.signOut = function() {
+        var auth2 = gapi.auth2.getAuthInstance();
+        auth2.signOut().then(function () {
+            console.log('User signed out.');
+        });
+    }
+
+    /**
+     * Handle successful sign-ins.
+     */
+    var onSuccess = function(user) {
+        console.log('Signed in as ' + user.getBasicProfile().getName());
+        var id_token = user.getAuthResponse().id_token;
+        document.cookie['gAuthToken'] = id_token;
+    };
+
+    /**
+     * Handle sign-in failures.
+     */
+    var onFailure = function(error) {
+        console.log(error);
+    };
+
 }]);
-
-

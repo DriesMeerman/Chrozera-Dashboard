@@ -1,0 +1,49 @@
+<html>
+
+<head>
+    <title>Dashboard</title>
+
+    <meta name="google-signin-client_id" content="897548273752-a3jtnk9hlpv5ucd92nke6qbj968kh5g3.apps.googleusercontent.com">
+
+    <% include ../../partial/headTemplate.ejs %>
+    <!--<link rel="stylesheet" type="text/css" href="style/index.css">-->
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
+
+
+</head>
+<body ng-app="app" ng-controller='loginCtrl'>
+
+<ng-include src="'templates/navbarTemplate.html'"></ng-include>
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-10 col-md-offset-2">
+            <div class="panel panel-default">
+                <div class="panel-heading">Login</div>
+                <div class="panel-body">
+                    <div class="form-group">
+                        <label for="user">Name:</label>
+                        <input id="user" type="text" class="form-control" ng-model="user">
+                    </div>
+                    <div class="form-group">
+                        <label for="pwd">Password:</label>
+                        <input id="pwd" type="password" class="form-control" ng-model="password">
+                    </div>
+                    <button class="form-control btn btn-default" ng-click="submitLogin()">Submit</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div>
+    <div class="g-signin2" data-onsuccess="onSignIn"></div>
+    <a href="#" ng-click="signOut()">Sign out</a>
+
+</div>
+
+</body>
+<script async defer src="https://apis.google.com/js/api.js"
+        onload="this.onload=function(){};handleClientLoad()"
+        onreadystatechange="if (this.readyState === 'complete') this.onload()"/>
+
+</html>

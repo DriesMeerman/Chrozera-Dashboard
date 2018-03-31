@@ -7,18 +7,18 @@
 .coin{
     border: solid #7c7c7c 1px;
     background-color: #d2d2d2;
-    width: 100px;
+    width: 200px; height: 200px;
     margin: 0 auto;
     border-radius: 50%;
-    height: 100px;
-    line-height: 100px;
+    line-height: 200px;
 }
 
 .head > img{
     margin-top: -8px;
+    width: 150px; height: 150px;
 }
 .tails .fa{
-    margin-left: -10px;
+    margin: 50px 0px 0 -10px;
 }
 
 .settings-button{

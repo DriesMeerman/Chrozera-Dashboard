@@ -26,8 +26,7 @@
         <div class="pull-left left-icon-margin" ng-if="icon">
             <i ng-class="icon" aria-hidden="true"></i>
         </div>
-        <div class="pull-right icon-margin">
-            <i class="fa fa-random" aria-hidden="true"></i>
+        <div class="pull-right icon-margin" ng-if="visitCount && visitCount !== 0">
             <i class="fa fa-history" aria-hidden="true"></i>
             <div class="l-inline">{{visitCount}}</div>
         </div>
